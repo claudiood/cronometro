@@ -34,18 +34,4 @@ begin
         );
 
     or_gate <= not q or not btn;
-
-
-
-    
-
-
-    
-
-
-
-
-
-
-
               
