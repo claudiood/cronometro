@@ -14,16 +14,18 @@ begin
 
 comparadorIncrementador: process(contador, clock)
 begin
-     contador <= "0";
-    (contador <= contador + "1" when contador =/ "10 1111 1010 1111 0000 1000 0000" else
+    contador <= "0";
+    if (clock'event and clock='1') then
+        contador <= contador + "1" when contador =/ "10 1111 1010 1111 0000 1000 0000" else
 
-    if(contador = "10 1111 1010 1111 0000 1000 0000") then
-        outclock <= "1";
-        else
-            outclock <= "0";
-        end if;
+        if(contador = "10 1111 1010 1111 0000 1000 0000") then
+            outclock <= "1";
+            else
+                outclock <= "0";
+            end if;
 
-    contador <= "0"            when contador =  "10 1111 1010 1111 0000 1000 0000";) when clock'event and clock='1';
+        contador <= "0"            when contador =  "10 1111 1010 1111 0000 1000 0000";
+     end if;
 end process comparadorIncrementador;
 
 end funcionality;
