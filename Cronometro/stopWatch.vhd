@@ -29,7 +29,7 @@ architecture funcionality of stopWatch is
     component counternine is
         port(counterclock : in std_logic;
              reset   	  : in std_logic;
-             nineout	  	  : out std_logic;
+             nineout  	  : out std_logic;
              qb           : out std_logic_vector(3 downto 0));
     end component;    
 
@@ -46,9 +46,9 @@ begin
 
     lat : latchRS 
         port map(
-            reset          => pin_f1,
-            set            => pin_g3,
-            q              => x
+            reset         => pin_f1,
+            set           => pin_g3,
+            q             => x
         );
 
     freqdiv: freqDivider
@@ -65,7 +65,7 @@ begin
             nineout       => clockcounter2
         );
     
-    counter2: countersix
+    counter2: counterfive
         port map(
             reset         => or_gate,
             counterclock  => clockcounter2,
@@ -81,7 +81,7 @@ begin
             nineout       => clockcounter4
         );
     
-    counter4: countersix
+    counter4: counterfive
         port map(
             reset         => or_gate,
             counterclock  => clockcounter4,
