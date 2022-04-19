@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity stopWatch is
-    port(clk, pin_h2, reset, set           : in std_logic;
+    port(clk, pin_h2, pin_f1, pin_g3           : in std_logic;
          hex3_d, hex2_d, hex1_d, hex0_d : out std_logic_vector(6 downto 0));
 end stopWatch;
 
@@ -16,7 +16,7 @@ architecture funcionality of stopWatch is
 
     component latchRS is
         port(reset, set   : in std_logic;
-             q      	     : inout std_logic);
+             q      	  : inout std_logic);
     end component;
 
     component counterfive is
@@ -46,8 +46,8 @@ begin
 
     lat : latchRS 
         port map(
-            reset          => reset,
-            set            => set,
+            reset          => pin_f1,
+            set            => pin_g3,
             q              => x
         );
 
