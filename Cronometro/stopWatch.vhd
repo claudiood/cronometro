@@ -16,7 +16,7 @@ architecture funcionality of stopWatch is
 
     component latchRS is
         port(reset, set   : in std_logic;
-             q      	     : inout std_logic);
+             q      	  : inout std_logic);
     end component;
 
     component counterfive is
