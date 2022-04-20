@@ -2,8 +2,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 entity latchRS is
-    port(reset             :    in std_logic;
-         q         	   :    out std_logic);
+    port(reset, set       :    in std_logic;
+         q         		  :    out std_logic);
 end latchRS;
 
 architecture funcionality of latchRS is
