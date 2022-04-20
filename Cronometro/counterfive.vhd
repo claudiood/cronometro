@@ -12,27 +12,26 @@ entity counterfive is
 end counterfive;
 
 architecture funcionality of counterfive is
-
-signal count : std_logic_vector(3 downto 0);
 	 
 begin
 	counter_bcd: process(counterclock, reset)
+	variable count : std_logic_vector(3 downto 0); 
 	begin
 		if(reset = '0') then
 			qc 	  	<= "0000";
-			count 	<= "0000";
+			count 	:= "0000";
 			else --if(reset = '1') then
 				if(counterclock'event and counterclock = '1') then
 
 					-- Conta até 5
 					if(count < "0101") then
-						count  	 <= count + '1';
+						count  	 := count + '1';
 						qc 	 	 <= count;
 						sixout   <= '0';
 						else if(count = "0101") then
 							sixout   <= '1';
 							qc 	  	 <= "0000";
-							count 	 <= "0000";
+							count 	 := "0000";
 						end if;
 					end if;
 				end if;
