@@ -3,8 +3,9 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity stopWatch is
-    port(CLOCK_50, PIN_F1, PIN_G3, PIN_H2           : in std_logic;
-         hex3_d, hex2_d, hex1_d, hex0_d             : out std_logic_vector(6 downto 0));
+    port(CLOCK_50, Start, Stop, Zera   : in std_logic;
+         button							         : in std_logic_vector (2 to 0);
+         hex3_d, hex2_d, hex1_d, hex0_d          : out std_logic_vector (0 to 6)); 
 end stopWatch;
 
 architecture funcionality of stopWatch is
@@ -46,8 +47,8 @@ begin
 
     lat : latchRS 
         port map(
-            reset          => PIN_G3,
-            set            => PIN_H2,
+            reset          => stop,
+            set            => start,
             q              => x
         );
 
@@ -112,7 +113,7 @@ begin
             qd            => hex3_d
         );
 		  
-	 or_gate  <= (not x) or (not PIN_F1);
-	 and_gate <= y and x;
+	 or_gate  <= (not x) or (zera); -- or_gate = reset dos contadores
+	 and_gate <= y and x;       -- and_gate = clock dos contadores
 
 end funcionality;
