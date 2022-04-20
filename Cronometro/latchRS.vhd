@@ -8,11 +8,11 @@ end latchRS;
 
 architecture funcionality of latchRS is
 begin
-	process(reset)
+	process(reset, set)
 	begin
 	if(reset = '0') then
 		q 	<= '0';
-			else if(reset = '1') then
+			else if(set = '0') then
 				q <= '1';
 			end if;
 		end if;
