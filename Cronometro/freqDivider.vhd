@@ -6,22 +6,22 @@ use ieee.std_logic_unsigned.all;
 
 entity freqDivider is
     port(clock     : in std_logic;
-         outclock  : out std_logic);
+         outclock  : buffer std_logic);
 end freqDivider;
 
 architecture funcionality of freqDivider is
-    signal contador : std_logic_vector(25 downto 0); -- 10 1111 1010 1111 0000 1000 0000 = 50M em binário 
+    signal contador : std_logic_vector(25 downto 0); -- 10 1111 1010 1111 0000 1000 0000 = 25M em binário 
 begin
 
 comparadorIncrementador: process(contador, clock)
 begin
     if(clock'event and clock='1') then
 	 
-        if (contador /= "10111110101111000010000000") then
+        if (contador /= "1011111010111100001000000") then
 				contador <= contador + '1';
-				outclock <= '0';
+				--outclock <= '0';
 				else
-					outclock <= '1';
+					outclock <= not outclock;
 					contador <=(others=> '0');
         end if;
     end if;
