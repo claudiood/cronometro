@@ -3,8 +3,8 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity stopWatch is
-    port(clk, btn, reset, set           : in std_logic;
-         hex3_d, hex2_d, hex1_d, hex0_d : out std_logic_vector(6 downto 0));
+    port(CLOCK_50, PIN_F1, PIN_G3, PIN_H2           : in std_logic;
+         hex3_d, hex2_d, hex1_d, hex0_d             : out std_logic_vector(6 downto 0));
 end stopWatch;
 
 architecture funcionality of stopWatch is
@@ -29,7 +29,7 @@ architecture funcionality of stopWatch is
     component counternine is
         port(counterclock : in std_logic;
              reset   	  : in std_logic;
-             nineout	  	  : out std_logic;
+             nineout	  : out std_logic;
              qb           : out std_logic_vector(3 downto 0));
     end component;    
 
@@ -46,14 +46,14 @@ begin
 
     lat : latchRS 
         port map(
-            reset          => reset,
-            set            => set,
+            reset          => PIN_G3,
+            set            => PIN_H2,
             q              => x
         );
 
     freqdiv: freqDivider
         port map(
-            clock          => clk,
+            clock          => CLOCK_50,
             outclock       => y
         );
 
@@ -65,7 +65,7 @@ begin
             nineout       => clockcounter2
         );
     
-    counter2: countersix
+    counter2: counterfive
         port map(
             reset         => or_gate,
             counterclock  => clockcounter2,
@@ -81,7 +81,7 @@ begin
             nineout       => clockcounter4
         );
     
-    counter4: countersix
+    counter4: counterfive
         port map(
             reset         => or_gate,
             counterclock  => clockcounter4,
@@ -112,7 +112,7 @@ begin
             qd            => hex3_d
         );
 		  
-	 or_gate  <= (not x) or (not btn);
+	 or_gate  <= (not x) or (not PIN_F1);
 	 and_gate <= y and x;
 
 end funcionality;
