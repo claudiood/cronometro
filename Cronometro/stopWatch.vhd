@@ -4,7 +4,6 @@ use ieee.numeric_std.all;
 
 entity stopWatch is
     port(CLOCK_50, Start, Stop, Zera   : in std_logic;
-         button							         : in std_logic_vector (2 to 0);
          hex3_d, hex2_d, hex1_d, hex0_d          : out std_logic_vector (0 to 6)); 
 end stopWatch;
 
@@ -17,7 +16,7 @@ architecture funcionality of stopWatch is
 
     component latchRS is
         port(reset, set   : in std_logic;
-             q      	     : inout std_logic);
+             q      	  : inout std_logic);
     end component;
 
     component counterfive is
